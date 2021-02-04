@@ -118,7 +118,6 @@ rm -rf $1/priv-app/MiWebView
 rm -rf $1/priv-app/Music
 rm -rf $1/priv-app/PersonalAssistant
 rm -rf $1/priv-app/PersonalAssistantGlobal
-rm -rf $1/priv-app/Provision
 rm -rf $1/priv-app/SoundRecorder
 rm -rf $1/priv-app/Tag
 rm -rf $1/priv-app/Turbo

@@ -230,7 +230,7 @@ bytesToHuman() {
 }
 echo "Raw Image Size: $(bytesToHuman $systemsize)" >> "$outputinfo"
 
-tree >> "tree.txt"
+tree $systemdir >> "tree.txt"
 
 echo "Creating Image: $outputimagename"
 # Use ext4fs to make image in P or older!
