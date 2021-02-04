@@ -2,7 +2,7 @@
 
 ## A modification of ErfanGSIs to try make the images fit on channel
 
-These images only work on vndk 29 due to other vndk being a waste of space and unneccessary.
+These images only work on vndk 29 due to other vndk being a waste of space and unneccessary for channel.
 
 ## Requirements
     Linux or Mac
@@ -21,11 +21,11 @@ cd ErfanGSIs
 ```
 
 ### For setting up requirements
-    bash setup.sh
+`bash setup.sh`
 
 ### Generating GSI from stock firmware URL
 Example: for making MIUI of Redmi 7 China, you can use this command
 ```
-./url2GSI.sh https://xiaomifirmwareupdater.com/miui/onclite/stable/V12.0.1.0.QFLCNXM MIUI --ab
+./url2GSI.sh https://bigota.d.miui.com/V12.0.1.0.QFLCNXM/miui_ONCLITE_V12.0.1.0.QFLCNXM_97a4945d61_10.0.zip MIUI --ab
 ```
 check url2GSI.sh for more info
