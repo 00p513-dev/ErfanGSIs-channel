@@ -19,7 +19,7 @@ cat $thispath/file_contexts >> $1/etc/selinux/plat_file_contexts
 "ro.build.fingerprint=motorola/channel_retail/channel:10/QPYS30.52-22-9/22b42:user/release-keys" >> $1/build.prop
 
 # libaudioclient
-cp -fpr $thispath/vndk-28-arm32/* $1/lib/vndk-28/
+#cp -fpr $thispath/vndk-28-arm32/* $1/lib/vndk-28/
 
 # Hotspot overlay
 cp -fpr $thispath/overlay/* $1/product/overlay/

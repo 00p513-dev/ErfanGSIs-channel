@@ -30,6 +30,7 @@ rm -rf $1/app/KSICibaEngine
 rm -rf $1/app/Lens
 rm -rf $1/app/Maps
 rm -rf $1/app/mi_connect_service
+rm -rf $1/app/MiuiCamera
 rm -rf $1/app/MiLinkService
 rm -rf $1/app/Mipay
 rm -rf $1/app/MiPicks
