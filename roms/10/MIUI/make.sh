@@ -22,8 +22,8 @@ echo "persist.vendor.sys.fp.fod.size.width_height=190,190" >> $1/build.prop
 #echo "DEVICE_PROVISIONED=1" >> $1/build.prop
 
 echo "==== CHANNEL CHANGES ===="
-sed -i 's/persist.miui.density_v2=440/persist.miui.density_v2=320/' $1/build.prop
-sed -i 's/ro.sf.lcd_density=320/ro.sf.lcd_density=320/' $1/build.prop
+sed -i 's/persist.miui.density_v2=440/persist.miui.density_v2=288/' $1/build.prop
+sed -i 's/ro.sf.lcd_density=320/ro.sf.lcd_density=288/' $1/build.prop
 echo "" >> $1/build.prop
 echo "# OpenGL version" >> $1/build.prop
 echo "ro.opengles.version=196610" >> $1/build.prop
