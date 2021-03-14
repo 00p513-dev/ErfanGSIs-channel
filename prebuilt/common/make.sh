@@ -56,9 +56,9 @@ sed -i "/reserved_disk/d" $1/etc/init/vold.rc
 # Adb prop
 sed -i "s/persist.sys.usb.config=none/persist.sys.usb.config=adb/g" $1/etc/prop.default
 # Use qti Bluetooth lib if avaliable
-if [ -f $1/lib64/libbluetooth_qti.so ]; then
-    echo "ro.bluetooth.library_name=libbluetooth_qti.so" >> $1/build.prop
-fi
+#if [ -f $1/lib64/libbluetooth_qti.so ]; then
+#    echo "ro.bluetooth.library_name=libbluetooth_qti.so" >> $1/build.prop
+#fi
 # Disable adb secure
 sed -i "s/ro.adb.secure=1/ro.adb.secure=0/" $1/etc/prop.default
 # cleanup build prop

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "==== MIUI-SPECIFIC CHANGES ===="
-
 systempath=$1
+LOCALDIR=$2
+device=$3
 thispath=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 
 # build.prop
@@ -15,20 +15,19 @@ rm -rf $1/priv-app/FindDevice
 rsync -ra $thispath/system/ $systempath
 
 #fix systemui crash because of FOD
-echo "==== ErfanGSIs CHANGES ===="
 echo "ro.hardware.fp.fod=true" >> $1/build.prop
 echo "persist.vendor.sys.fp.fod.location.X_Y=445,1260" >> $1/build.prop
 echo "persist.vendor.sys.fp.fod.size.width_height=190,190" >> $1/build.prop
 #echo "DEVICE_PROVISIONED=1" >> $1/build.prop
 
-echo "==== CHANNEL CHANGES ===="
-sed -i 's/persist.miui.density_v2=440/persist.miui.density_v2=288/' $1/build.prop
-sed -i 's/ro.sf.lcd_density=320/ro.sf.lcd_density=288/' $1/build.prop
-echo "" >> $1/build.prop
-echo "# OpenGL version" >> $1/build.prop
-echo "ro.opengles.version=196610" >> $1/build.prop
-
-echo "==== ErfanGSIs CHANGES ===="
+if [ "$device" == "channel" ]; then
+    sed -i 's/persist.miui.density_v2=440/persist.miui.density_v2=400/' $1/build.prop
+    sed -i 's/ro.sf.lcd_density=440/ro.sf.lcd_density=400/' $1/build.prop
+    echo "" >> $1/build.prop
+    echo "# OpenGL version" >> $1/build.prop
+    echo "ro.opengles.version=196610" >> $1/build.prop
+    cp $LOCALDIR/devices/channel/MIUI/channel.xml $1/etc/device_features/channel.xml
+fi
 
 # drop dirac
 rm -rf $1/priv-app/DiracAudioControlService

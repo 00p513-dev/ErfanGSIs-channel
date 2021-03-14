@@ -4,7 +4,7 @@
 
 usage()
 {
-echo "Usage: $0 <Path to GSI system> <Firmware type> <Output type> [Output Dir]"
+echo "Usage: $0 <Path to GSI system> <Firmware type> <Output type> <device> [Output Dir]"
     echo -e "\tPath to GSI system: Mount GSI and set mount point"
     echo -e "\tFirmware type: Firmware mode"
     echo -e "\tOutput type: AB or Aonly"
@@ -21,6 +21,12 @@ LOCALDIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
 sourcepath=$1
 romtype=$2
 outputtype=$3
+device=$4
+
+echo "sourcepath: $sourcepath"
+echo "romtype: $romtype"
+echo "outputtype: $outputtype"
+echo "device: $device"
 
 if [[ $romtype == *":"* ]]; then
     romtypename=`echo "$romtype" | cut -d ":" -f 2`
@@ -164,7 +170,7 @@ $scriptsdir/nukeABstuffs.sh "$systemdir/system" 2>/dev/null
 $prebuiltdir/$sourcever/make.sh "$systemdir/system" "$romsdir/$sourcever/$romtype" 2>/dev/null
 $prebuiltdir/$sourcever/makeroot.sh "$systemdir" "$romsdir/$sourcever/$romtype" 2>/dev/null
 $prebuiltdir/common/make.sh "$systemdir/system" "$romsdir/$sourcever/$romtype" 2>/dev/null
-$romsdir/$sourcever/$romtype/make.sh "$systemdir/system" 2>/dev/null
+$romsdir/$sourcever/$romtype/make.sh "$systemdir/system" "$LOCALPATH" "$device" 2>/dev/null
 $romsdir/$sourcever/$romtype/makeroot.sh "$systemdir" 2>/dev/null
 if [ ! "$romtype" == "$romtypename" ]; then
     $romsdir/$sourcever/$romtype/$romtypename/make.sh "$systemdir/system" 2>/dev/null
@@ -176,6 +182,10 @@ fi
 if [ "$outputtype" == "Aonly" ]; then
     $prebuiltdir/$sourcever/makeA.sh "$systemdir/system" 2>/dev/null
     $romsdir/$sourcever/$romtype/makeA.sh "$systemdir/system" 2>/dev/null
+fi
+if [ "$device" == "channel" ]; then
+    echo "device: channel"
+    cp "devices/channel/init.channel.rc" "$systemdir/etc/init.channel.rc" 2>/dev/null
 fi
 
 # Fixing environ
@@ -193,13 +203,13 @@ date=`date +%Y%m%d`
 outputname="$romtypename-$outputtype-$sourcever-$date-amygrace.tk"
 outputimagename="$outputname".img
 outputtextname="$outputname".txt
-if [ "$4" == "" ]; then
+if [ "$5" == "" ]; then
     echo "Create out dir"
     outdirname="out"
     outdir="$LOCALDIR/$outdirname"
     mkdir -p "$outdir"
 else
-    outdir="$4"
+    outdir="$5"
 fi
 output="$outdir/$outputimagename"
 outputinfo="$outdir/$outputtextname"

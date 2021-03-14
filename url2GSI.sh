@@ -11,7 +11,7 @@ CLEAN=false
 
 usage()
 {
-    echo "Usage: [--help|-h|-?] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c] $0 <Firmware link> <Firmware type> [Other args]"
+    echo "Usage: [--help|-h|-?] [--ab|-b] [--aonly|-a] [--mounted|-m] [--cleanup|-c] $0 <Firmware link> <Firmware type> <device> [Other args]"
     echo -e "\tFirmware link: Firmware download link or local path"
     echo -e "\tFirmware type: Firmware mode"
     echo -e "\t--ab: Build only AB"
@@ -52,7 +52,7 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-if [[ ! -n $2 ]]; then
+if [[ ! -n $3 ]]; then
     echo "ERROR: Enter all needed parameters"
     usage
     exit
@@ -61,6 +61,8 @@ fi
 URL=$1
 shift
 SRCTYPE=$1
+shift
+DEVICE=$1
 shift
 
 ORIGINAL_URL=$URL
@@ -130,7 +132,7 @@ if [ $MOUNTED == false ]; then
 fi
 
 if [ $AB == true ]; then
-   "$PROJECT_DIR"/make.sh "${URL}" "${SRCTYPE}" AB "$PROJECT_DIR/output" ${@} || LEAVE
+   "$PROJECT_DIR"/make.sh "${URL}" "${SRCTYPE}" AB "${DEVICE}" "$PROJECT_DIR/output" ${@} || LEAVE
 fi
 
 if [ $AONLY == true ]; then
