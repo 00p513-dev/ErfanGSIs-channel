@@ -203,9 +203,13 @@ if [ "$outputtype" == "Aonly" ]; then
     $prebuiltdir/$sourcever/makeA.sh "$systemdir/system" 2>/dev/null
     $romsdir/$sourcever/$romtype/makeA.sh "$systemdir/system" 2>/dev/null
 fi
+
+# Device specific stuff
+
 if [ "$device" == "channel" ]; then
     echo "device: channel"
     cp "devices/channel/init.channel.rc" "$systemdir/etc/init.channel.rc" 2>/dev/null
+    cp "prebuilt/10/overlay/treble-overlay-moto-g7play.apk" "$systemdir/product/overlay/treble-overlay-moto-g7play.apk" 2>/dev/null
 fi
 
 # Fixing environ
