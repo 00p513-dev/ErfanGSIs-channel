@@ -2,7 +2,7 @@
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     distro=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release)
-    if [[ "$distro" == "arch" ]]; then
+    if [ "$distro" == "arch" ] || [ "$distro" == "manjaro" ]; then
        echo "Arch Linux Detected"
        sudo pacman -S --needed unace unrar zip unzip p7zip sharutils uudeview arj cabextract file-roller dtc xz python-pip brotli lz4 gawk libmpack aria2
        #aur=rar
