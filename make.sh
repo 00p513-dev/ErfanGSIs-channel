@@ -210,6 +210,7 @@ if [ "$device" == "channel" ]; then
     echo "device: channel"
     cp "devices/channel/init.channel.rc" "$systemdir/etc/init.channel.rc" 2>/dev/null
     cp "prebuilt/10/overlay/treble-overlay-moto-g7play.apk" "$systemdir/product/overlay/treble-overlay-moto-g7play.apk" 2>/dev/null
+    bash devices/channel/patch10.sh
 fi
 
 # Fixing environ
